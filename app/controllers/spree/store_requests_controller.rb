@@ -23,8 +23,7 @@ class Spree::StoreRequestsController < Spree::StoreController
   def create
 
     @spree_store_request = Spree::StoreRequest.new(store_request_params)
-
-    if @spree_store_request.save
+    if verify_recaptcha(model: @spree_store_request) && @spree_store_request.save
       render(:template => 'spree/' + (params[:lang].present? ? params[:lang].to_s : DEFAULT_VIEW_LANG) + '/store_requests/thanks_to_vendor', :locals => {vendor_request: @spree_store_request})  
     else
       render :new

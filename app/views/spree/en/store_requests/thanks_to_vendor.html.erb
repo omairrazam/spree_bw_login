@@ -10,7 +10,7 @@
   <div class="register_my_dv">
     <div class="main_register_title stor-tille-main dis-secuss">
     <h2><%= store_request_msg_main_content.try(:title)%></h2>
-    <p><%= vendor_request.try(:contact_name) %>, <%= store_request_msg_para1_content.try(:description)%> </p>
+    <p><%= vendor_request.try(:contact_name) %><%= store_request_msg_para1_content.try(:description)%> </p>
      
      <p><%= store_request_msg_para2_content.try(:description)%></p>
     </div>
@@ -20,11 +20,11 @@
 </div>
 
 <div class="clearfix"></div>
-<%if store_request_msg_advertsment_label.image.attached? %>
-  <div class="adver-sec">
-    <p><%= store_request_msg_advertsment_label.try(:title)%></p>
-    <div class="container">
-      <div class="adver-sec-mn"> <%= image_tag(main_app.url_for(store_request_msg_advertsment_label.image), height: "127px", width: "1100") %></div>
-    </div>
-  </div>
-<% end%>
+<%#if store_request_msg_advertsment_label.image.attached? %>
+<!--  <div class="adver-sec">-->
+<!--    <p><%#= store_request_msg_advertsment_label.try(:title)%></p>-->
+<!--    <div class="container">-->
+<!--      <div class="adver-sec-mn"> <%#= image_tag(main_app.url_for(store_request_msg_advertsment_label.image), height: "127px", width: "1100") %></div>-->
+<!--    </div>-->
+<!--  </div>-->
+<%# end%>

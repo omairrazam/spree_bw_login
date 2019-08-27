@@ -33,13 +33,12 @@
 
 
 <div class="clearfix"></div>
-<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @user } %>
 
 
 <div class="container">
   <div class="register_my_dv">
 
-  <div class="main_register_title">
+  <div class="main_register_title  stor-tille-main">
   <h2><%= register_top_content.try(:title) %></h2>
   <p><%= register_top_content.try(:description) %></p>
   </div>
@@ -56,7 +55,7 @@
       <%= render :partial => 'spree/en/shared/user_form', :locals => { :f => f } %>
 
 
-      <div class="form-group col-md-12 col-sm-12 col-lg-12 fin_st p-0" >
+      <div class="form-group col-md-12 col-sm-12 col-lg-12 fin_st p-0"style="height: 50px" >
           <div class="form-check item-set-con" id="user-subscribe-container">
 
             <%= f.check_box :subscribed, class: "form-check-input" %>
@@ -67,13 +66,13 @@
 
           </div>
         </div>
-
+      <div class="col-md-12 col-sm-12 col-lg-12 cn_ry p-0">
+        <%= recaptcha_tags callback:'removeError',style: "transform:scale(0.82);-webkit-transform:scale(0.82);transform-origin:0 0;-webkit-transform-origin:0 0; margin-bottom: 15px;" %>
+      </div>
         <div class="clearfix"></div>
         <div class="elit text-center yrt-input">
           <%= f.submit register_account_btn_content.try(:title), :class => 'btn btn-primary btn-sm btn-sub-frm' %>
         </div>
-
-
         <div class="form-group col-md-12 col-sm-12 col-lg-12 fin_st p-0">
           <div class="form-check item-set-con">
             <p class="form-check-label clk_mt">
@@ -137,6 +136,16 @@
   </div>
 
 </div>
+<script>
+
+    $('#new_spree_user').submit(function () {
+        $('#captcha_error').remove();
+        if (grecaptcha.getResponse() == ""){
+            submitUserFormCaptcha();
+            return false;
+        }
+    })
+</script>
 
 <!--<div class="clearfix"></div>-->
 <%#if register_advertsment_label.image.attached? %>

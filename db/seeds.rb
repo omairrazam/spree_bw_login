@@ -32,8 +32,8 @@ Spree::PageContent.find_or_create_by! title: "Maintain your uniqueness", descrip
 
 
 Spree::PageContent.find_or_create_by! title: "Thanks, We'll Be In Touch Soon", description: "", slug: "store-request-message-main-heading-desc"
-Spree::PageContent.find_or_create_by! title: "", description: ", thank you for registering your interest in being on our Marketplace.If you provided your email address we sent you an email confirming your interest.", slug: "store-request-message-paragraph-1"
-Spree::PageContent.find_or_create_by! title: "", description: "One of our amazing team will be in contact with you very soon to discuss the next steps.In the meantime we encourage you to look around and see why our stores love being on Black Line.", slug: "store-request-message-paragraph-2"
+Spree::PageContent.find_or_create_by! title: "", description: ", thank you for registering your interest in being on our Marketplace.  If you provided your email address we sent you an email confirming your interest.", slug: "store-request-message-paragraph-1"
+Spree::PageContent.find_or_create_by! title: "", description: "One of our amazing team will be in contact with you very soon to discuss the next steps.  In the meantime we encourage you to look around and see why our stores love being on Black-Line.", slug: "store-request-message-paragraph-2"
 Spree::PageContent.find_or_create_by! title: "Advertisement", description: "", slug: "store-request-message-label-advertisement"
 
 

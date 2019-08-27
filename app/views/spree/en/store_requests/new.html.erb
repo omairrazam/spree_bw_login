@@ -3,6 +3,7 @@
     color: red;
   }
 </style>
+
 <% store_request_contents     = Spree::PageContent.from_gen_slug('store-request') %>
 <% store_request_label_contents_image = store_request_contents.from_gen_slug('store-request-label') %>
 <% store_request_label_contents = Spree::PageContent.from_gen_slug('register-store-label') %>
@@ -23,17 +24,7 @@
 <div class="clearfix"></div>
 
 <div class="container">
-  <% if @spree_store_request.errors.any? %>
-    <div class="alert alert-danger"id="error_explanation">
-      <h2><%= pluralize(@spree_store_request.errors.count, "error") %> prohibited this spree_store_request from being saved:</h2>
 
-      <ul>
-      <% @spree_store_request.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
   <div class="register_my_dv">
   
   <div class="main_register_title stor-tille-main">
@@ -51,7 +42,7 @@
 
         <%= render partial: 'spree/en/store_requests/form',  locals: {form: form}%>
      
-         <div class="form-group col-md-12 col-sm-12 col-lg-12 fin_st p-0">
+         <div class="form-group col-md-12 col-sm-12 col-lg-12 fin_st p-0" style="height: 50px">
           <div class="item-set-con" id="user-subscribe-container">
             <%= form.check_box :subscribed, class: "form-check-input" %>
             <p class="">
@@ -61,13 +52,17 @@
             
           </div>
         </div>
-          
+
+        <div class="form-group col-md-12 col-sm-12 col-lg-12 p-0 cdn-ln g-recaptcha-outer">
+          <%= recaptcha_tags callback:'removeError',style: "transform:scale(0.82);-webkit-transform:scale(0.82);transform-origin:0 0;-webkit-transform-origin:0 0; margin-bottom: 7px;" %>
+        </div>
         <div class="clearfix"></div>
         <div class="elit text-center yrt-input">
           <%= form.submit "GET MY STORE ON BLACK LINE", class: "btn btn-primary btn-sm btn-sub-frm" %>
         </div>
-        
-        
+
+        <div class="clearfix"></div>
+
         <div class="form-group col-md-12 col-sm-12 col-lg-12 fin_st p-0 cdn-ln">
           <div class="item-set-con">
             <p class="clk_mt">
@@ -77,8 +72,6 @@
             
           </div>
         </div>
-
-      
         <% end %>
 
 
@@ -131,9 +124,28 @@
   </div>
 <%# end%>
 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
+<script>
+    <% if @spree_store_request.errors.any? %>
+    <%  @spree_store_request.errors.full_messages.each do |message| %>
+    toastr.error('<%= message %>')
+    <% end %>
+    <% end %>
+</script>
 
 <script>
+
+    $('#store_form').submit(function () {
+        $('#captcha_error').remove();
+        if (grecaptcha.getResponse() == ""){
+            submitUserFormCaptcha();
+            return false;
+        }
+    })
+
+</script>
+
+
+<script type="text/javascript">
     $('#store_form').bootstrapValidator({
         // feedbackIcons: {
         //     valid: 'glyphicon glyphicon-ok',
@@ -158,7 +170,7 @@
             'store_request[store_name]': {
                 validators: {
                     notEmpty: {
-                        message: 'Please enter your brands name'
+                        message: "Please enter your brand's name"
                     }
                 }
             },
